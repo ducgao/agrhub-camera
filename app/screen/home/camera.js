@@ -5,9 +5,7 @@ import {
   Image,
   View 
 } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
-import STRING from '../../res/string'
-import THEME from '../../res/theme'
+import { Ionicons } from 'expo/node_modules/@expo/vector-icons'
 
 export default class Header extends Component {
 

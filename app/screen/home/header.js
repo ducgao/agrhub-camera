@@ -4,7 +4,7 @@ import {
   Text, 
   View 
 } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons } from 'expo/node_modules/@expo/vector-icons'
 import STRING from '../../res/string'
 import THEME from '../../res/theme'
 
