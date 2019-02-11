@@ -60,7 +60,7 @@ export default class Authentication extends Component {
   }
 
   renderLoginButton() {
-    return <Button style={styles.loginButton} text="Login"/>
+    return <Button style={styles.loginButton} text={STRING.login}/>
   }
 
   renderRegister() {
