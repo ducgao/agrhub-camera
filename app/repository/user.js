@@ -8,9 +8,29 @@ export default class UserRepository {
     return this.singleInstance
   }
 
-  userInfo = null
+  observers = []
+
+  userInfo = {
+    displayName: "DucGao4213",
+    cameraCount: 3
+  }
 
   isLogged() {
-    return false
+    return true
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer)
+    this.notify()
+  }
+
+  removeObserver(observer) {
+    this.observers = this.observers.filter(o => o != observer)
+  }
+
+  notify() {
+    this.observers.forEach(o => {
+      o(this.userInfo)
+    })
   }
 }

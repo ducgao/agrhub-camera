@@ -1,5 +1,5 @@
 export default theme = {
-  colorPrimary: 'red',
+  colorPrimary: '#41bbf4',
   textLink: 'green',
   appBackground: '#eeeeee',
   tabBackground: 'white',

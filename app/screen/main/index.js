@@ -10,7 +10,7 @@ import { Ionicons } from '@expo/vector-icons'
 import THEME from '../../res/theme'
 import Home from '../home'
 import Cloud from '../authentication/login'
-import Profile from '../authentication/register'
+import Profile from '../profile'
 import { isIphoneX } from '../../utils'
 
 export default class Main extends Component {
@@ -55,7 +55,7 @@ export default class Main extends Component {
 
   renderLabel = (props) => {
     const route = props.route
-    const iconColor = this.state.index == route.index ? THEME.active : THEME.unactive
+    const iconColor = this.state.index == route.index ? THEME.colorPrimary : THEME.unactive
     const iconName = this.icons[route.index] 
     const iconTitle = this.titles[route.index] 
 
@@ -86,6 +86,7 @@ export default class Main extends Component {
   render() {
     const tabView = <TabView
       style={{ backgroundColor: THEME.tabBackground }}
+      swipeEnabled={false}
       renderTabBar={this.renderTabBar}
       onIndexChange={this.onTabIndexChanged}
       navigationState={this.state}

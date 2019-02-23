@@ -8,5 +8,7 @@ export default string = {
   tandc: "I have read, understand and agree to the Term of Use and Privacy Policy",
   login: "Login",
   signUp: 'Sign up',
-  register: "New to"
+  register: "New to",
+  camera: "camera",
+  cameras: "cameras"
 }
