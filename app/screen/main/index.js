@@ -9,7 +9,7 @@ import { TabView, TabBar, SceneMap } from 'react-native-tab-view'
 import { Ionicons } from '@expo/vector-icons'
 import THEME from '../../res/theme'
 import Home from '../home'
-import Cloud from '../authentication/login'
+import Cloud from '../cloud'
 import Profile from '../profile'
 import { isIphoneX } from '../../utils'
 
