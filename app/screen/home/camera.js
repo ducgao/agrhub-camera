@@ -5,13 +5,15 @@ import {
   Image,
   View 
 } from 'react-native'
-import { Ionicons } from 'expo/node_modules/@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 export default class Header extends Component {
 
   renderHeader() {
+    const data = this.props.data
+    const name = data.name
     return <View style={styles.headerContainer}>
-      <Text style={styles.title}>Camera Kitchen</Text>
+      <Text style={styles.title}>{name}</Text>
       <View style={styles.iconContainer}>
         <Ionicons style={styles.icon} name="md-play-circle" size={20} color={'gray'} />
         <Ionicons style={styles.icon} name="md-settings" size={20} color={'gray'} />
@@ -20,10 +22,12 @@ export default class Header extends Component {
   }
 
   renderThumbnail() {
+    const data = this.props.data
+    const thumbnail = data.thumbnail
     return <View style={styles.thumbnail}>
         <Image 
           style={styles.thumbnail}
-          source={{uri: 'https://nhadepso.com/wp-content/uploads/2017/12/tong-hop-15-thiet-ke-phong-bep-cua-so-kinh-dep-xuat-sac-nha-dep-so-3.jpg'}}
+          source={{uri: thumbnail}}
       />
     </View>
   }

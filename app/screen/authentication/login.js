@@ -9,7 +9,7 @@ import THEME from '../../res/theme'
 import Input, { EMAIL, PASSWORD } from '../../ui-component/input'
 import Checkable from '../../ui-component/checkable'
 import Button from '../../ui-component/button'
-import { navigateToRegister, navigateToHome } from '../../common/router';
+import { navigateToRegister, replaceToMain } from '../../common/router';
 
 export default class Authentication extends Component {
   static navigationOptions = { header: null }
@@ -19,7 +19,7 @@ export default class Authentication extends Component {
   }
 
   requestLogin = () => {
-    navigateToHome(this)
+    replaceToMain(this)
   }
 
   renderInputContainer() {

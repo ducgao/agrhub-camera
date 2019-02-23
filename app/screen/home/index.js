@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { 
   StyleSheet,
   View,
-  FlatList
+  FlatList,
+  ActivityIndicator
 } from 'react-native'
 import Header from './header'
 import CameraItem from './camera'
 import CameraRepository from '../../repository/camera'
 import THEME from '../../res/theme'
+import { isIphoneX } from '../../utils';
 
 export default class Home extends Component {
   static navigationOptions = { header: null }
@@ -40,13 +42,19 @@ export default class Home extends Component {
 
   renderCameras() {
     if (this.state.cameraList == null) {
-
+      return <ActivityIndicator style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0
+      }}/>
     }
     else {
       return <FlatList 
         style={styles.cameraList}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(index) => 'camera-item-' + index}
+        keyExtractor={(_, index) => 'camera-item-' + index}
         data={this.state.cameraList} 
         renderItem={this.renderCameraItem}
       />
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: THEME.app
   },
   header: {
-    marginTop: 44
+    marginTop: 44 + (isIphoneX ? 20 : 0)
   },
   cameraList: {
     marginTop: 12,

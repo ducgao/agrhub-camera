@@ -6,7 +6,7 @@ import {
   StyleSheet
 } from 'react-native'
 import THEME from '../res/theme'
-import { Ionicons } from 'expo/node_modules/@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 export default class Checkable extends Component {
   state = {
