@@ -14,7 +14,7 @@ export default class Checkable extends Component {
   }
 
   render() {
-    const checkableIcon = this.state.checked ? "md-radio-button-on" : "md-radio-button-off"
+    const checkableIcon = this.state.checked ? "ios-radio-button-on" : "ios-radio-button-off"
     const checkableColor = this.state.checked ? THEME.active : THEME.unactive
     return <View style={[styles.container, this.props.style]}>
       <Ionicons 

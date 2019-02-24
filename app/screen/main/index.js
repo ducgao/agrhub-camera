@@ -17,9 +17,9 @@ export default class Main extends Component {
   static navigationOptions = { header: null }
 
   icons = [
-    'md-videocam',
-    'md-cloud',
-    'md-person'
+    'ios-videocam',
+    'ios-cloud',
+    'ios-person'
   ]
 
   titles = [

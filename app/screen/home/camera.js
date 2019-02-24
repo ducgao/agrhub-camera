@@ -15,8 +15,8 @@ export default class Header extends Component {
     return <View style={styles.headerContainer}>
       <Text style={styles.title}>{name}</Text>
       <View style={styles.iconContainer}>
-        <Ionicons style={styles.icon} name="md-play-circle" size={20} color={'gray'} />
-        <Ionicons style={styles.icon} name="md-settings" size={20} color={'gray'} />
+        <Ionicons style={styles.icon} name="ios-play-circle" size={20} color={'gray'} />
+        <Ionicons style={styles.icon} name="ios-settings" size={20} color={'gray'} />
       </View>
     </View>
   }

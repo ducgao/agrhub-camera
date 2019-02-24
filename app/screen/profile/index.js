@@ -49,8 +49,9 @@ export default class Profile extends Component {
     const ccount = this.state.cameraCount
     const name = userInfo.name
     const cameraCount = ccount + ' ' + (ccount > 1 ? STRING.cameras : STRING.camera)
+    const avatarSource = userInfo.avatar ? { uri: userInfo.avatar } : require('../../res/images/avatar-default.png')
     return <View style={styles.headerContainer}>
-      <Image style={styles.avatar} />
+      <Image style={styles.avatar} source={avatarSource} />
       <Text style={styles.userName}>{name}</Text>
       <Text style={styles.cameraCount}>{cameraCount}</Text>
     </View>
@@ -58,16 +59,22 @@ export default class Profile extends Component {
 
   renderBlock1() {
     return <View style={styles.blockContainer}>
-      <Cell title={"Profile Managerment"} icon={"md-contact"} color={THEME.colorPrimary}/>
-      <Cell title={"Notification Center"} icon={"md-mail"} color={"#f48541"}/>
+      <Cell title={"Profile Managerment"} icon={"ios-contact"} color={THEME.colorPrimary}/>
+      <Cell title={"Notification Center"} icon={"ios-mail"} color={"#f48541"}/>
     </View>
   }
 
   renderBlock2() {
     return <View style={styles.blockContainer}>
-      <Cell title={"FAQ & Feedback"} icon={"md-help-circle"} color={"#f44170"}/>
-      <Cell title={"About"} icon={"md-information-circle"} color={"#a341f4"}/>
-      <Cell title={"Settings"} icon={"md-settings"} color={"#41f4a9"}/>
+      <Cell title={"FAQ & Feedback"} icon={"ios-help-circle"} color={"#f44170"}/>
+      <Cell title={"About"} icon={"ios-information-circle"} color={"#a341f4"}/>
+      <Cell title={"Settings"} icon={"ios-settings"} color={"#41f4a9"}/>
+    </View>
+  }
+
+  renderBlock3() {
+    return <View style={styles.blockContainer}>
+      <Cell title={"Logout"} icon={"ios-power"} color={"#f44170"}/>
     </View>
   }
 
@@ -78,6 +85,7 @@ export default class Profile extends Component {
         <ScrollView>
           {this.renderBlock1()}
           {this.renderBlock2()}
+          {this.renderBlock3()}
         </ScrollView>
       </View>
     )
@@ -99,6 +107,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     justifyContent: 'center',
     paddingTop: isIphoneX ? 32 : 12,
+    zIndex: 99
   },
   avatar: {
     width: 80,

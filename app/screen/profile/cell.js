@@ -3,7 +3,7 @@ import {
   StyleSheet, 
   Text, 
   View,
-  TouchableWithoutFeedback
+  TouchableOpacity
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -14,23 +14,24 @@ export default class Cell extends Component {
     const iconName = this.props.icon
     const title = this.props.title
     return (
-      <TouchableWithoutFeedback style={[styles.container, this.props.style]}>
+      <TouchableOpacity style={[styles.container, this.props.style]}>
         <View style={[styles.container, this.props.style]}>
           <Ionicons style={styles.icon} name={iconName} size={28} color={iconColor}/>
           <Text style={styles.title}>{title}</Text>
-          <Ionicons style={styles.rightIcon} name="md-arrow-dropright" size={24} color={"#00000050"}/>
+          <Ionicons style={styles.rightIcon} name="ios-arrow-forward" size={24} color={"#00000050"}/>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingStart: 16,
-    paddingEnd: 16,
-    paddingTop: 12,
-    paddingBottom: 12,
+    flex: 1,
+    paddingStart: 8,
+    paddingEnd: 8,
+    paddingTop: 6,
+    paddingBottom: 6,
     flexDirection: 'row'
   },
   icon: {
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   },
   rightIcon: {
     position: 'absolute',
-    right: 16,
+    right: 8,
     alignSelf: 'center'
   }
 })
