@@ -43,7 +43,7 @@ export default class Input extends Component {
 
     if (this.props.verifyMethod === PASSWORD) {
       this.setState({ 
-        status: input.length >= 8 ? STATUS_VALID : STATUS_ERROR,
+        status: input.length >= 6 ? STATUS_VALID : STATUS_ERROR,
         input 
       })
       return

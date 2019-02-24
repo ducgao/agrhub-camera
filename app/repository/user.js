@@ -1,3 +1,5 @@
+import { AsyncStorage } from 'react-native'  
+import { USER_INFO_STORE_KEY } from '../common/constants'
 export default class UserRepository {
   static singleInstance = null
   static instance() {
@@ -10,13 +12,15 @@ export default class UserRepository {
 
   observers = []
 
-  userInfo = {
-    displayName: "DucGao4213",
-    cameraCount: 3
-  }
+  userInfo = null
 
   isLogged() {
-    return true
+    return this.userInfo != null
+  }
+
+  setUserInfo(userInfo) {
+    this.userInfo = userInfo
+    AsyncStorage.setItem(USER_INFO_STORE_KEY, JSON.stringify(userInfo))
   }
 
   addObserver(observer) {

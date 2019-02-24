@@ -3,6 +3,6 @@ export default theme = {
   textLink: 'green',
   appBackground: '#eeeeee',
   tabBackground: 'white',
-  active: 'red',
+  active: '#41bbf4',
   unactive: '#e0e0e0'
 }

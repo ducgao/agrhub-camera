@@ -2,34 +2,72 @@ import React, { Component } from 'react'
 import { 
   StyleSheet,
   View,
-  Text
+  Text,
+  Alert,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native'
 import STRING from '../../res/string'
 import THEME from '../../res/theme'
 import Input, { EMAIL, PASSWORD } from '../../ui-component/input'
-import Checkable from '../../ui-component/checkable'
 import Button from '../../ui-component/button'
 import { navigateToRegister, replaceToMain } from '../../common/router';
+import Api from '../../api'
+import UserRepository from '../../repository/user';
 
 export default class Authentication extends Component {
   static navigationOptions = { header: null }
+
+  emailInputRef = null
+  passwordInputRef = null
+
+  api = Api.instance()
+  userRepository = UserRepository.instance()
 
   openRegisterScreen = () => {
     navigateToRegister(this)
   }
 
   requestLogin = () => {
-    replaceToMain(this)
+    const email = this.emailInputRef.getText()
+    const password = this.passwordInputRef.getText()
+
+    if (email == null) {
+      Alert.alert(STRING.appName, STRING.emailIncorrect)
+      return 
+    }
+
+    if (password == null) {
+      Alert.alert(STRING.appName, STRING.passwordIncorrect)
+      return 
+    }
+
+    this.api.login(email, password).then(res => {
+      const token = res.session_key
+      if (token) {
+        this.api.setAccessToken(token)  
+        UserRepository.instance().setUserInfo(res.user)
+        replaceToMain(this)
+      }
+      else {
+        Alert.alert(STRING.appName, STRING.loginFail)
+      }
+    })
+    .catch(_ => {
+      Alert.alert(STRING.appName, STRING.loginFail)
+    })
   }
 
   renderInputContainer() {
     return <View style={styles.inputContainer}>
       <Input
+        ref={ref => this.emailInputRef = ref}
         title={STRING.email}
         placeholder={STRING.email}
         verifyMethod={EMAIL}
       />
       <Input
+        ref={ref => this.passwordInputRef = ref}
         style={styles.inputPassword}
         title={STRING.password}
         placeholder={STRING.password}
@@ -39,10 +77,6 @@ export default class Authentication extends Component {
         {STRING.forgotPassword}
       </Text>
     </View>
-  }
-
-  renderTandC() {
-    return <Checkable style={styles.tandc} title={STRING.tandc} />
   }
 
   renderLoginButton() {
@@ -60,12 +94,13 @@ export default class Authentication extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.renderInputContainer()}
-        {this.renderTandC()}
-        {this.renderLoginButton()}
-        {this.renderRegister()}
-      </View>
+      <TouchableWithoutFeedback style={styles.container} onPress={() => Keyboard.dismiss()}>
+        <View style={styles.container}>
+          {this.renderInputContainer()}
+          {this.renderLoginButton()}
+          {this.renderRegister()}
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 }
@@ -88,15 +123,10 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     color: THEME.textLink
   },
-  tandc: {
-    marginStart: 24, 
-    marginEnd: 24,
-    marginTop: 44
-  },
   loginButton: {
     marginStart: 24, 
     marginEnd: 24,
-    marginTop: 16
+    marginTop: 60
   },
   register: {
     marginStart: 24, 

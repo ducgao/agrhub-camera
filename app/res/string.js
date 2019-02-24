@@ -10,5 +10,8 @@ export default string = {
   signUp: 'Sign up',
   register: "New to",
   camera: "camera",
-  cameras: "cameras"
+  cameras: "cameras",
+  emailIncorrect: "Your email is not correct",
+  passwordIncorrect: "Your password must be bigger 6 charactor",
+  loginFail: "Your email or password is not correct, please try again!"
 }
