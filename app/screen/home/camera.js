@@ -27,11 +27,13 @@ export default class Header extends Component {
     const thumbnail = data.thumbnail
     const imageSource = thumbnail ? { uri: thumbnail } : require('../../res/images/camera-default-thumb.png')
     return <TouchableWithoutFeedback style={styles.thumbnail} onPress={this.props.onPress}>
+      <View style={styles.thumbnail}>
         <Image 
           style={[styles.thumbnail, { width: '100%', backgroundColor: '#d1d3d4' }]}
           source={imageSource}
           resizeMode='contain'
-      />
+        />
+      </View>
     </TouchableWithoutFeedback>
   }
 
