@@ -3,21 +3,36 @@ import {
   StyleSheet,
   View,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from 'react-native'
+import STRING from '../../res/string'
 import Header from './header'
 import CameraItem from './camera'
 import CameraRepository from '../../repository/camera'
 import THEME from '../../res/theme'
-import { isIphoneX } from '../../utils';
+import { isIphoneX } from '../../utils'
+import Api from '../../api'
 
 export default class Home extends Component {
   static navigationOptions = { header: null }
 
+  api = Api.instance()
   cameraRepository = CameraRepository.instance()
 
   state = {
     cameraList: null
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.api.getCameraList().then(res => {
+      this.cameraRepository.setCameraList(res.camera_list.DEFAULT)
+    })
+    .catch(e => {
+      Alert.alert(STRING.appName, e)
+    })
   }
 
   componentDidMount() {
@@ -74,7 +89,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.app
+    backgroundColor: THEME.appBackground
   },
   header: {
     marginTop: 44 + (isIphoneX ? 20 : 0)

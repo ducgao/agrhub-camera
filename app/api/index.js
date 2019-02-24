@@ -19,4 +19,9 @@ export default class Api extends Base {
     })
     return this.callPost(url, body)
   }
+
+  getCameraList() {
+    const url = ENDPOINTS.CAMERA_LIST
+    return this.callGet(url)
+  }
 }

@@ -37,7 +37,7 @@ export default class Profile extends Component {
     const userInfo = this.state.userInfo
     if (userInfo == null) return
 
-    const name = userInfo.displayName
+    const name = userInfo.name
     const cameraCount = userInfo.cameraCount + ' ' + (userInfo.cameraCount > 1 ? STRING.cameras : STRING.camera)
     return <View style={styles.headerContainer}>
       <Image style={styles.avatar} />

@@ -18,7 +18,7 @@ export default class Authentication extends Component {
       name: "Arg Test",
       email: "argtest@local.com"
     })
-    Api.instance().setAccessToken("e8dbf08af09e5d419b366e0684013c53") 
+    Api.instance().setAccessToken("6079e3c84e9142f5386800176e511b88") 
     replaceToMain(this) 
 
     // this.syncData()

@@ -11,7 +11,7 @@ export default class Header extends Component {
 
   renderHeader() {
     const data = this.props.data
-    const name = data.name
+    const name = data.camera_name
     return <View style={styles.headerContainer}>
       <Text style={styles.title}>{name}</Text>
       <View style={styles.iconContainer}>
@@ -24,10 +24,12 @@ export default class Header extends Component {
   renderThumbnail() {
     const data = this.props.data
     const thumbnail = data.thumbnail
+    const imageSource = thumbnail ? { uri: thumbnail } : require('../../res/images/camera-default-thumb.png')
     return <View style={styles.thumbnail}>
         <Image 
-          style={styles.thumbnail}
-          source={{uri: thumbnail}}
+          style={[styles.thumbnail, { width: '100%', backgroundColor: '#d1d3d4' }]}
+          source={imageSource}
+          resizeMode='contain'
       />
     </View>
   }
