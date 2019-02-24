@@ -59,22 +59,22 @@ export default class Profile extends Component {
 
   renderBlock1() {
     return <View style={styles.blockContainer}>
-      <Cell title={"Profile Managerment"} icon={"ios-contact"} color={THEME.colorPrimary}/>
-      <Cell title={"Notification Center"} icon={"ios-mail"} color={"#f48541"}/>
+      <Cell title={STRING.profileManagerment} icon={"ios-contact"} color={THEME.colorPrimary}/>
+      <Cell title={STRING.notificationCenter} icon={"ios-mail"} color={"#f48541"}/>
     </View>
   }
 
   renderBlock2() {
     return <View style={styles.blockContainer}>
-      <Cell title={"FAQ & Feedback"} icon={"ios-help-circle"} color={"#f44170"}/>
-      <Cell title={"About"} icon={"ios-information-circle"} color={"#a341f4"}/>
-      <Cell title={"Settings"} icon={"ios-settings"} color={"#41f4a9"}/>
+      <Cell title={STRING.feedback} icon={"ios-help-circle"} color={"#f44170"}/>
+      <Cell title={STRING.About} icon={"ios-information-circle"} color={"#a341f4"}/>
+      <Cell title={STRING.Settings} icon={"ios-settings"} color={"#41f4a9"}/>
     </View>
   }
 
   renderBlock3() {
     return <View style={styles.blockContainer}>
-      <Cell title={"Logout"} icon={"ios-power"} color={"#f44170"}/>
+      <Cell title={STRING.logout} icon={"ios-power"} color={"#f44170"}/>
     </View>
   }
 

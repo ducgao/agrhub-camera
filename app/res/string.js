@@ -13,5 +13,11 @@ export default string = {
   cameras: "cameras",
   emailIncorrect: "Your email is not correct",
   passwordIncorrect: "Your password must be bigger 6 charactor",
-  loginFail: "Your email or password is not correct, please try again!"
+  loginFail: "Your email or password is not correct, please try again!",
+  profileManagerment: "Profile Managerment",
+  notificationCenter: "Notification Center",
+  feedback: "FAQ & Feedback",
+  About: "About",
+  Settings: "Settings",
+  logout: "Logout",
 }
