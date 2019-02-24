@@ -3,7 +3,8 @@ import {
   StyleSheet, 
   Text, 
   Image,
-  View 
+  View,
+  TouchableWithoutFeedback
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -25,13 +26,13 @@ export default class Header extends Component {
     const data = this.props.data
     const thumbnail = data.thumbnail
     const imageSource = thumbnail ? { uri: thumbnail } : require('../../res/images/camera-default-thumb.png')
-    return <View style={styles.thumbnail}>
+    return <TouchableWithoutFeedback style={styles.thumbnail} onPress={this.props.onPress}>
         <Image 
           style={[styles.thumbnail, { width: '100%', backgroundColor: '#d1d3d4' }]}
           source={imageSource}
           resizeMode='contain'
       />
-    </View>
+    </TouchableWithoutFeedback>
   }
 
   render() {

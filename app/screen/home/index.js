@@ -13,6 +13,7 @@ import CameraRepository from '../../repository/camera'
 import THEME from '../../res/theme'
 import { isIphoneX } from '../../utils'
 import Api from '../../api'
+import { navigateToCamera } from '../../common/router';
 
 export default class Home extends Component {
   static navigationOptions = { header: null }
@@ -47,8 +48,16 @@ export default class Home extends Component {
     this.setState({ cameraList: cameras })
   }
 
+  requestOpenCamera(item) {
+    navigateToCamera(this, item)
+  }
+
   renderCameraItem = ({item}) => {
-    return <CameraItem style={styles.cameraItem} data={item}/>
+    return <CameraItem 
+      style={styles.cameraItem} 
+      data={item}
+      onPress={() => this.requestOpenCamera(item)}
+    />
   }
 
   renderHeader() {

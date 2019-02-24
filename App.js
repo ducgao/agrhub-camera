@@ -1,16 +1,12 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
-import Home from './app/screen/home'
 import Authentication from './app/screen/authentication/index'
-import Register from './app/screen/authentication/register'
-import Login from './app/screen/authentication/login'
 import Main from './app/screen/main'
+import Camera from './app/screen/camera'
 
 const screensDefination = {
   Authentication: { screen:  Authentication },
   Main: { screen:  Main },
-  Login: { screen:  Login },
-  Register: { screen:  Register },
-  Home: { screen: Home }
+  Camera: { screen:  Camera }
 }
 
 const RootStack = createStackNavigator(screensDefination)

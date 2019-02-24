@@ -24,4 +24,9 @@ export default class Api extends Base {
     const url = ENDPOINTS.CAMERA_LIST
     return this.callGet(url)
   }
+
+  getCameraStreamingUrl(id) {
+    const url = ENDPOINTS.CAMERA_VIEW + '/' + id
+    return this.callGet(url)
+  }
 }
