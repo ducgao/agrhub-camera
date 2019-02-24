@@ -11,34 +11,44 @@ import THEME from '../../res/theme'
 import { isIphoneX } from '../../utils'
 import UserRepository from '../../repository/user'
 import Cell from './cell'
+import CameraRepository from '../../repository/camera';
 
 export default class Profile extends Component {
   static navigationOptions = { header: null }
 
   state = {
-    userInfo: null
+    userInfo: null,
+    cameraCount: 0
   }
 
   userRepository = UserRepository.instance()
+  cameraRepository = CameraRepository.instance()
 
   componentDidMount() {
     this.userRepository.addObserver(this.userObserver)
+    this.cameraRepository.addObserver(this.cameraObserver)
   }
 
   componentWillUnmount() {
     this.userRepository.removeObserver(this.userObserver)
+    this.cameraRepository.removeObserver(this.cameraObserver)
   }
 
   userObserver = (userInfo) => {
     this.setState({ userInfo })
   }
 
+  cameraObserver = (cameraList) => {
+    this.setState({ cameraCount: cameraList ? cameraList.length : 0 })
+  }
+
   renderHeader() {
     const userInfo = this.state.userInfo
     if (userInfo == null) return
 
+    const ccount = this.state.cameraCount
     const name = userInfo.name
-    const cameraCount = userInfo.cameraCount + ' ' + (userInfo.cameraCount > 1 ? STRING.cameras : STRING.camera)
+    const cameraCount = ccount + ' ' + (ccount > 1 ? STRING.cameras : STRING.camera)
     return <View style={styles.headerContainer}>
       <Image style={styles.avatar} />
       <Text style={styles.userName}>{name}</Text>
