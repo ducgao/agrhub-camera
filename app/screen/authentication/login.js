@@ -45,7 +45,8 @@ export default class Authentication extends Component {
     this.api.login(email, password).then(res => {
       const token = res.session_key
       if (token) {
-        this.api.setAccessToken(token)  
+        this.api.setAccessToken(token)
+        this.api.setUserCredentialInfo(email, password)
         UserRepository.instance().setUserInfo(res.user)
         replaceToMain(this)
       }

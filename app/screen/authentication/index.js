@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { AsyncStorage } from 'react-native'
 import UserRepository from '../../repository/user'
 import { replaceToLogin, replaceToMain } from '../../common/router';
-import { USER_INFO_STORE_KEY, ACCESS_TOKEN_STORE_KEY } from '../../common/constants';
+import { USER_INFO_STORE_KEY, ACCESS_TOKEN_STORE_KEY, CREDENTIAL_INFO_STORE_KEY } from '../../common/constants';
 import Api from '../../api';
 
 export default class Authentication extends Component {
@@ -18,7 +18,8 @@ export default class Authentication extends Component {
       name: "Arg Test",
       email: "argtest@local.com"
     })
-    Api.instance().setAccessToken("6079e3c84e9142f5386800176e511b88") 
+    Api.instance().setAccessToken("0167c00b9a19f91289bf41c3a783c65a") 
+    Api.instance().setUserCredentialInfo("argtest@local.com", "argtest@2017")
     replaceToMain(this) 
 
     // this.syncData()
@@ -27,20 +28,23 @@ export default class Authentication extends Component {
   syncData() {
     const keys = [
       USER_INFO_STORE_KEY, 
-      ACCESS_TOKEN_STORE_KEY
+      ACCESS_TOKEN_STORE_KEY,
+      CREDENTIAL_INFO_STORE_KEY
     ] 
     AsyncStorage.multiGet(keys).then(res => {
-      if (res.length < 2) {
+      if (res.length < 3) {
         replaceToLogin(this)
         return
       }
 
       const userInfo = JSON.parse(res[0])
       const token = res[1]
+      const credentialInfo = res[2]
 
       if (userInfo.email) {
         UserRepository.instance().setUserInfo(userInfo)
         Api.instance().setAccessToken(token) 
+        Api.instance().setUserCredentialInfo(credentialInfo.email, credentialInfo.password)
         replaceToMain(this) 
       }
       else {
